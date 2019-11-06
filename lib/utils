@@ -26,13 +26,17 @@ function install_dotnet() {
     mkdir -p ${DOTNET_CACHE_LOCATION}/{sdk,runtime}
 
     topic "Fetching .NET SDK"
-    local DOTNET_SDK_DOWNLOAD_URL=https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$DOTNET_SDK_VERSION/dotnet-sdk-$DOTNET_SDK_VERSION-linux-x64.tar.gz
+    # too slow for China
+    # local DOTNET_SDK_DOWNLOAD_URL=https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$DOTNET_SDK_VERSION/dotnet-sdk-$DOTNET_SDK_VERSION-linux-x64.tar.gz
+    local DOTNET_SDK_DOWNLOAD_URL=https://download.visualstudio.microsoft.com/download/pr/886b4a4c-30af-454b-8bec-81c72b7b4e1f/d1a0c8de9abb36d8535363ede4a15de6/dotnet-sdk-3.0.100-linux-x64.tar.gz
     curl -sSL ${DOTNET_SDK_DOWNLOAD_URL} | tar xz -C ${DOTNET_CACHE_LOCATION}/sdk
     find ${DOTNET_CACHE_LOCATION}/sdk/sdk/${DOTNET_SDK_VERSION}/runtimes/* -maxdepth 0 ! -name unix -exec rm -r {} +
     rm -f ${DOTNET_CACHE_LOCATION}/sdk/sdk/${DOTNET_SDK_VERSION}/nuGetPackagesArchive.lzma
 
     topic "Fetching .NET Runtime"
-    local DOTNET_RUNTIME_DOWNLOAD_URL=https://dotnetcli.blob.core.windows.net/dotnet/Runtime/$DOTNET_RUNTIME_VERSION/dotnet-runtime-$DOTNET_RUNTIME_VERSION-linux-x64.tar.gz
+    # too slow for China
+    # local DOTNET_RUNTIME_DOWNLOAD_URL=https://dotnetcli.blob.core.windows.net/dotnet/Runtime/$DOTNET_RUNTIME_VERSION/dotnet-runtime-$DOTNET_RUNTIME_VERSION-linux-x64.tar.gz
+    local DOTNET_RUNTIME_DOWNLOAD_URL=https://download.visualstudio.microsoft.com/download/pr/a5ff9cbb-d558-49d1-9fd2-410cb1c8b095/a940644f4133b81446cb3733a620983a/dotnet-runtime-3.0.0-linux-x64.tar.gz
     curl -sSL ${DOTNET_RUNTIME_DOWNLOAD_URL} | tar xz -C ${DOTNET_CACHE_LOCATION}/runtime
   fi
 
